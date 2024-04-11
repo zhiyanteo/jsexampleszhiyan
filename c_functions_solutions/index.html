@@ -70,13 +70,6 @@
             </div>
 
       </div>
-
-      <!-- Radio buttons for meal preference -->
-      <div class="mb-3">
-        <label class="form-label"><strong>Meal Preference:</strong></label>
-        <!-- Radio for meal preference -->
-        <div class="form-check form-check-inline">
-        </div>
       
       <!-- display the selected option -->
 <div class="d-block h-20">
@@ -128,13 +121,31 @@ const uName = document.getElementById("inputName").value;
 // TODO: validate the inputs before giving feedback to the user
 const validated = validateInputs(selectedChoice, uName);
 
-  if(validated)
-return alert("You have not filled in your name.")
+// check if meal preference is selected
+const mealPreference = document .getElementsByName("inlineRadioMeal")
 
+// create a boolean, set the mealChecked to false (default)
+let mealSelected = false;
+
+// loop through the mealPreference "radio buttons"
+// so long as one of the radio buttons is selected, set mealSelected
+for (let index = 0; index < mealPreference.length; index++) {
+  if (mealPreference[index].checked){
+    mealSelected = true;
+    break;
+  }
+}
+
+// discontinue and show alert if validateInputs returns false
+  if(validated && mealSelected){
+// call ftnGreeting, pass in the "selectedChoice" and "uName"
 const result = ftnGreeting(selectedChoice, uName);
 return alert(result);
 }
 
+return alert("Please complete all inputs.");
+
+}
 
   </script>
   
